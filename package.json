@@ -1,0 +1,36 @@
+{
+  "name": "@internetmatt/design-tokens",
+  "version": "1.0.0",
+  "description": "Shared design tokens \u2014 CSS custom properties and TypeScript helpers from the centralized YAML spec",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/tokens.css"
+  },
+  "files": [
+    "src",
+    "tokens.yaml",
+    "build-tokens.mjs",
+    "README.md"
+  ],
+  "scripts": {
+    "build:css": "node build-tokens.mjs",
+    "build": "node build-tokens.mjs",
+    "pack:dry": "npm pack --dry-run",
+    "ci": "npm run build && npm run pack:dry"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "internetmatt",
+    "design-tokens",
+    "css-variables",
+    "theme"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

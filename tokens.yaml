@@ -1,0 +1,630 @@
+# Design Tokens - Central Theme Configuration
+# This single file controls styling across ALL surfaces: web, mobile, electron
+# Change once, applies everywhere. No code changes needed.
+#
+# Last Updated: 2026-03-29
+# Version: 1.0.0
+
+# =============================================================================
+# COLORS - Fluent UI Palette
+# =============================================================================
+colors:
+  # Primary Brand Colors
+  primary:
+    default: '#0078D4'      # Fluent Blue
+    hover: '#106EBE'
+    active: '#005A9E'
+    focus: '#0078D4'
+    disabled: '#C8C8C8'
+
+  secondary:
+    default: '#50E6FF'      # Fluent Cyan
+    hover: '#2DB4E0'
+    active: '#157FBE'
+    focus: '#50E6FF'
+    disabled: '#C8C8C8'
+
+  accent:
+    default: '#7FBA00'      # Fluent Green
+    hover: '#107C10'
+    active: '#004B1C'
+    focus: '#7FBA00'
+    disabled: '#C8C8C8'
+
+  # Semantic Colors
+  success:
+    default: '#107C10'      # Green
+    light: '#7FBA00'
+    dark: '#004B1C'
+    background: '#DFF6DD'
+    border: '#107C10'
+    text: '#004B1C'
+
+  danger:
+    default: '#E81123'      # Red
+    light: '#F7630C'
+    dark: '#A4373A'
+    background: '#FED9CC'
+    border: '#E81123'
+    text: '#A4373A'
+
+  warning:
+    default: '#FFB900'      # Amber
+    light: '#FFF4CE'
+    dark: '#D83B01'
+    background: '#FFF4CE'
+    border: '#FFB900'
+    text: '#B3007F'
+
+  info:
+    default: '#0078D4'      # Blue
+    light: '#E3F2FD'
+    dark: '#004B1C'
+    background: '#E3F2FD'
+    border: '#0078D4'
+    text: '#004B1C'
+
+  # Neutral Colors
+  neutral:
+    black: '#000000'
+    white: '#FFFFFF'
+    primary:    '#333333'    # 1
+    secondary:  '#666666'    # 2
+    tertiary:   '#999999'    # 3
+    quarternary: '#CCCCCC'   # 4
+    quinary:    '#EEEEEE'    # 5
+    sixiary:    '#F5F5F5'    # 6
+
+  # Background Colors
+  background:
+    light: '#FFFFFF'
+    default: '#F5F5F5'
+    dark: '#1F1F1F'
+    surface: '#FAFAFA'
+    overlay: 'rgba(0, 0, 0, 0.5)'
+
+  # Border Colors
+  border:
+    light: '#E1E1E1'
+    default: '#C8C8C8'
+    dark: '#A6A6A6'
+    focus: '#0078D4'
+    error: '#E81123'
+
+  # Interactive States
+  interactive:
+    hover: 'rgba(0, 120, 212, 0.1)'
+    active: 'rgba(0, 120, 212, 0.2)'
+    focus: 'rgba(0, 120, 212, 0.3)'
+    disabled: 'rgba(0, 0, 0, 0.05)'
+
+  # Semantic Disabled
+  disabled:
+    foreground: '#A6A6A6'
+    background: '#F5F5F5'
+    border: '#E1E1E1'
+
+# =============================================================================
+# TYPOGRAPHY - Font Definitions
+# =============================================================================
+typography:
+  # Font Family Stack
+  fontFamily:
+    base: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif"
+    mono: "'Courier New', Courier, monospace"
+    display: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif"
+
+  # Font Weights
+  fontWeights:
+    thin: 100
+    extralight: 200
+    light: 300
+    normal: 400
+    medium: 500
+    semibold: 600
+    bold: 700
+    extrabold: 800
+    black: 900
+
+  # Heading Styles (H1-H6)
+  heading:
+    h1:
+      fontSize: 32
+      fontSizePx: '32px'
+      fontWeight: 600
+      lineHeight: 40
+      letterSpacing: -0.5
+      mobile:
+        fontSize: 28
+        fontSizePx: '28px'
+        lineHeight: 36
+
+    h2:
+      fontSize: 28
+      fontSizePx: '28px'
+      fontWeight: 600
+      lineHeight: 36
+      letterSpacing: -0.3
+      mobile:
+        fontSize: 24
+        fontSizePx: '24px'
+        lineHeight: 32
+
+    h3:
+      fontSize: 24
+      fontSizePx: '24px'
+      fontWeight: 600
+      lineHeight: 32
+      letterSpacing: 0
+      mobile:
+        fontSize: 20
+        fontSizePx: '20px'
+        lineHeight: 28
+
+    h4:
+      fontSize: 20
+      fontSizePx: '20px'
+      fontWeight: 600
+      lineHeight: 28
+      letterSpacing: 0
+      mobile:
+        fontSize: 18
+        fontSizePx: '18px'
+        lineHeight: 24
+
+    h5:
+      fontSize: 16
+      fontSizePx: '16px'
+      fontWeight: 600
+      lineHeight: 24
+      letterSpacing: 0.1
+      mobile:
+        fontSize: 14
+        fontSizePx: '14px'
+        lineHeight: 20
+
+    h6:
+      fontSize: 14
+      fontSizePx: '14px'
+      fontWeight: 600
+      lineHeight: 20
+      letterSpacing: 0.2
+
+  # Body Text Styles
+  body:
+    lg:
+      fontSize: 16
+      fontSizePx: '16px'
+      fontWeight: 400
+      lineHeight: 24
+      letterSpacing: 0.3
+      mobile:
+        fontSize: 14
+        fontSizePx: '14px'
+        lineHeight: 22
+
+    md:
+      fontSize: 14
+      fontSizePx: '14px'
+      fontWeight: 400
+      lineHeight: 22
+      letterSpacing: 0.2
+
+    sm:
+      fontSize: 12
+      fontSizePx: '12px'
+      fontWeight: 400
+      lineHeight: 18
+      letterSpacing: 0.1
+
+    xs:
+      fontSize: 11
+      fontSizePx: '11px'
+      fontWeight: 400
+      lineHeight: 16
+      letterSpacing: 0
+
+  # Caption/Label Styles
+  caption:
+    lg:
+      fontSize: 14
+      fontSizePx: '14px'
+      fontWeight: 600
+      lineHeight: 20
+      letterSpacing: 0.1
+
+    md:
+      fontSize: 12
+      fontSizePx: '12px'
+      fontWeight: 600
+      lineHeight: 16
+      letterSpacing: 0.1
+
+    sm:
+      fontSize: 11
+      fontSizePx: '11px'
+      fontWeight: 600
+      lineHeight: 16
+      letterSpacing: 0.2
+
+  # Code/Monospace Styles
+  code:
+    fontSize: 13
+    fontSizePx: '13px'
+    fontFamily: "'Courier New', Courier, monospace"
+    fontWeight: 400
+    lineHeight: 20
+    letterSpacing: 0
+    background: '#F5F5F5'
+    color: '#A4373A'
+
+# =============================================================================
+# SPACING - Scale (4px base unit)
+# =============================================================================
+spacing:
+  # Named Scales
+  xs: 4
+  xsPx: '4px'
+  sm: 8
+  smPx: '8px'
+  md: 16
+  mdPx: '16px'
+  lg: 24
+  lgPx: '24px'
+  xl: 32
+  xlPx: '32px'
+  xxl: 48
+  xxlPx: '48px'
+  xxxl: 64
+  xxxlPx: '64px'
+
+  # Component-Specific
+  button:
+    paddingX: 16
+    paddingY: 8
+    borderRadius: 4
+    minHeight: 32
+
+  input:
+    paddingX: 12
+    paddingY: 8
+    borderRadius: 4
+    minHeight: 32
+    borderWidth: 1
+
+  card:
+    padding: 16
+    borderRadius: 8
+    gap: 16
+    boxShadow: '0 1px 4px rgba(0,0,0,0.1)'
+
+  modal:
+    padding: 24
+    borderRadius: 8
+    margin: 16
+
+  notification:
+    padding: 12
+    paddingX: 16
+    borderRadius: 4
+    gap: 12
+
+  # Grid & Layout
+  gap:
+    xs: 4
+    sm: 8
+    md: 16
+    lg: 24
+    xl: 32
+
+  margin:
+    xs: 4
+    sm: 8
+    md: 16
+    lg: 24
+    xl: 32
+
+  padding:
+    xs: 4
+    sm: 8
+    md: 16
+    lg: 24
+    xl: 32
+
+# =============================================================================
+# BORDER RADIUS - Rounded Corners
+# =============================================================================
+borderRadius:
+  none: 0
+  xs: 2
+  sm: 4
+  md: 8
+  lg: 12
+  xl: 16
+  full: 9999
+
+# =============================================================================
+# SHADOWS - Elevation Levels
+# =============================================================================
+shadows:
+  none: 'none'
+  xs: '0 1px 2px rgba(0,0,0,0.05)'
+  sm: '0 1px 3px rgba(0,0,0,0.1)'
+  md: '0 4px 6px rgba(0,0,0,0.1)'
+  lg: '0 10px 15px rgba(0,0,0,0.1)'
+  xl: '0 20px 25px rgba(0,0,0,0.1)'
+  xxl: '0 25px 50px rgba(0,0,0,0.25)'
+  inset: 'inset 0 2px 4px rgba(0,0,0,0.06)'
+  focus: '0 0 0 3px rgba(0,120,212,0.25)'
+
+# =============================================================================
+# BREAKPOINTS - Responsive Design
+# =============================================================================
+breakpoints:
+  xs: 320
+  sm: 480
+  md: 768
+  lg: 1024
+  xl: 1280
+  xxl: 1536
+
+# Media Queries
+mediaQueries:
+  mobile: '@media (max-width: 479px)'
+  tablet: '@media (min-width: 480px) and (max-width: 767px)'
+  desktop: '@media (min-width: 768px) and (max-width: 1023px)'
+  wide: '@media (min-width: 1024px)'
+  ultrawide: '@media (min-width: 1280px)'
+  xs: '@media (max-width: 319px)'
+  sm: '@media (min-width: 480px)'
+  md: '@media (min-width: 768px)'
+  lg: '@media (min-width: 1024px)'
+  xl: '@media (min-width: 1280px)'
+  xxl: '@media (min-width: 1536px)'
+
+# =============================================================================
+# TRANSITIONS & ANIMATIONS
+# =============================================================================
+transitions:
+  # Duration
+  fast: 150
+  base: 200
+  slow: 300
+  slower: 500
+
+  # Easing
+  easing:
+    linear: 'linear'
+    easeIn: 'cubic-bezier(0.4, 0, 1, 1)'
+    easeOut: 'cubic-bezier(0, 0, 0.2, 1)'
+    easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)'
+    bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+
+  # Common Transitions
+  default: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)'
+  color: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+  background: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+  transform: 'transform 200ms cubic-bezier(0.4, 0, 0.2, 1)'
+  opacity: 'opacity 200ms cubic-bezier(0.4, 0, 0.2, 1)'
+
+# =============================================================================
+# THEMES - Named Theme Configurations
+# =============================================================================
+themes:
+  light:
+    name: 'Light'
+    background: '#FFFFFF'
+    foreground: '#333333'
+    colors:
+      primary: '#0078D4'
+      secondary: '#50E6FF'
+      accent: '#7FBA00'
+      surface: '#FAFAFA'
+      border: '#E1E1E1'
+      text: '#333333'
+      textSecondary: '#666666'
+      textDisabled: '#A6A6A6'
+      background: '#FFFFFF'
+      backgroundSecondary: '#F5F5F5'
+
+  dark:
+    name: 'Dark'
+    background: '#1F1F1F'
+    foreground: '#FFFFFF'
+    colors:
+      primary: '#50E6FF'
+      secondary: '#0078D4'
+      accent: '#7FBA00'
+      surface: '#2D2D2D'
+      border: '#3C3C3C'
+      text: '#FFFFFF'
+      textSecondary: '#B3B3B3'
+      textDisabled: '#666666'
+      background: '#1F1F1F'
+      backgroundSecondary: '#2D2D2D'
+
+  highContrast:
+    name: 'High Contrast'
+    background: '#FFFFFF'
+    foreground: '#000000'
+    colors:
+      primary: '#0078D4'
+      secondary: '#107C10'
+      accent: '#E81123'
+      surface: '#FAFAFA'
+      border: '#000000'
+      text: '#000000'
+      textSecondary: '#333333'
+      textDisabled: '#666666'
+      background: '#FFFFFF'
+      backgroundSecondary: '#F5F5F5'
+
+# =============================================================================
+# DENSITY - Component Size Variants
+# =============================================================================
+density:
+  compact:
+    padding: 8
+    height: 28
+    fontSize: 12
+    gap: 4
+
+  normal:
+    padding: 12
+    height: 32
+    fontSize: 14
+    gap: 8
+
+  spacious:
+    padding: 16
+    height: 40
+    fontSize: 16
+    gap: 12
+
+# =============================================================================
+# STATES - Interactive States & Modifiers
+# =============================================================================
+states:
+  default:
+    opacity: 1
+    cursor: 'pointer'
+
+  hover:
+    opacity: 0.95
+    cursor: 'pointer'
+
+  active:
+    opacity: 0.9
+    cursor: 'pointer'
+
+  focus:
+    outline: '2px solid #0078D4'
+    outlineOffset: 2
+
+  disabled:
+    opacity: 0.5
+    cursor: 'not-allowed'
+
+  error:
+    color: '#E81123'
+    borderColor: '#E81123'
+
+  warning:
+    color: '#FFB900'
+    borderColor: '#FFB900'
+
+  success:
+    color: '#107C10'
+    borderColor: '#107C10'
+
+  loading:
+    opacity: 0.6
+    cursor: 'wait'
+
+# =============================================================================
+# Z-INDEX - Stacking Order
+# =============================================================================
+zIndex:
+  hide: -1
+  base: 0
+  docked: 10
+  dropdown: 1000
+  sticky: 1020
+  fixed: 1030
+  backdrop: 1040
+  modal: 1050
+  popover: 1060
+  tooltip: 1070
+  notification: 1080
+  alert: 1090
+
+# =============================================================================
+# COMPONENT SPECIFIC - Fine-tuned values per component type
+# =============================================================================
+components:
+  button:
+    primary:
+      background: '#0078D4'
+      color: '#FFFFFF'
+      borderRadius: 4
+      padding: '8px 16px'
+      minHeight: 32
+      fontWeight: 600
+      transition: 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+      hover:
+        background: '#106EBE'
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      active:
+        background: '#005A9E'
+      disabled:
+        background: '#C8C8C8'
+        color: '#A6A6A6'
+        cursor: 'not-allowed'
+
+    secondary:
+      background: 'transparent'
+      color: '#0078D4'
+      border: '1px solid #0078D4'
+      borderRadius: 4
+      padding: '8px 16px'
+      minHeight: 32
+      fontWeight: 600
+      hover:
+        background: 'rgba(0,120,212,0.1)'
+      active:
+        background: 'rgba(0,120,212,0.2)'
+
+  input:
+    borderRadius: 4
+    borderWidth: 1
+    borderColor: '#C8C8C8'
+    padding: '8px 12px'
+    minHeight: 32
+    fontSize: 14
+    fontFamily: 'inherit'
+    transition: 'border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+    focus:
+      borderColor: '#0078D4'
+      boxShadow: '0 0 0 3px rgba(0,120,212,0.25)'
+    disabled:
+      background: '#F5F5F5'
+      color: '#A6A6A6'
+      cursor: 'not-allowed'
+
+  modal:
+    borderRadius: 8
+    boxShadow: '0 25px 50px rgba(0,0,0,0.25)'
+    padding: 24
+    maxWidth: 600
+    backdropFilter: 'blur(4px)'
+
+  card:
+    borderRadius: 8
+    background: '#FFFFFF'
+    border: '1px solid #E1E1E1'
+    padding: 16
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+    hover:
+      boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+
+  notification:
+    borderRadius: 4
+    padding: '12px 16px'
+    minHeight: 40
+    gap: 12
+    boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+
+# =============================================================================
+# METADATA
+# =============================================================================
+metadata:
+  name: 'Projecto Design Tokens'
+  description: 'Centralized design system configuration for all Projecto surfaces (web, mobile, electron)'
+  version: '1.0.0'
+  status: 'stable'
+  lastUpdated: '2026-03-29'
+  surfaces:
+    - web
+    - mobile
+    - electron
+  maintainer: 'Projecto Design System Team'
