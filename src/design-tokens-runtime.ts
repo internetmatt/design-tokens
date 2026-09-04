@@ -1,8 +1,8 @@
 /**
- * Re-exports from the declarative-ui design-tokens runtime.
+ * Re-exports the design-tokens runtime (source of truth lives here).
  * Kept here so consumers only need @internetmatt/design-tokens.
  */
-export type { DesignTokens, TokenValue } from '../../declarative-ui/src/runtime/design-tokens';
+export type { DesignTokens, TokenValue } from './runtime';
 export {
   loadDesignTokens,
   applyDesignTokens,
@@ -10,4 +10,4 @@ export {
   getTokenValue,
   getTokenVariable,
   validateDesignTokens,
-} from '../../declarative-ui/src/runtime/design-tokens';
+} from './runtime';

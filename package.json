@@ -6,19 +6,21 @@
   "main": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./tokens.css": "./src/tokens.css"
+    "./tokens.css": "./src/tokens.css",
+    "./runtime": "./src/runtime.ts"
   },
   "files": [
     "src",
     "tokens.yaml",
     "build-tokens.mjs",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build:css": "node build-tokens.mjs",
     "build": "node build-tokens.mjs",
     "pack:dry": "npm pack --dry-run",
-    "ci": "npm run build && npm run pack:dry"
+    "ci": "node ../../tools/scripts/ui-packages/ci-check.mjs --package design-tokens"
   },
   "publishConfig": {
     "access": "public"
@@ -32,5 +34,9 @@
   "license": "MIT",
   "devDependencies": {
     "js-yaml": "^4.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/internetmatt/design-tokens.git"
   }
 }

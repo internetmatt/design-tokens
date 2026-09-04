@@ -132,7 +132,7 @@ const tsLines = [
   `  return \`var(\${name})\`;`,
   `}`,
   ``,
-  `export { applyDesignTokens, loadDesignTokens } from '../../../declarative-ui/src/runtime/design-tokens';`,
+  `export { applyDesignTokens, loadDesignTokens } from './runtime';`,
 ];
 
 writeFileSync(OUT_TS, tsLines.join('\n') + '\n', 'utf8');
