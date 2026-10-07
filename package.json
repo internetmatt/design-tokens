@@ -20,7 +20,8 @@
     "build:css": "node build-tokens.mjs",
     "build": "node build-tokens.mjs",
     "pack:dry": "npm pack --dry-run",
-    "ci": "node ../../tools/scripts/ui-packages/ci-check.mjs --package design-tokens"
+    "ci": "node ../../tools/scripts/ui-packages/ci-check.mjs --package design-tokens",
+    "test": "node --import tsx --test tests/runtime.test.mjs"
   },
   "publishConfig": {
     "access": "public"
@@ -33,10 +34,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "js-yaml": "^4.1.1"
+    "@types/js-yaml": "^4.0.9",
+    "tsx": "^4.23.15"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/internetmatt/design-tokens.git"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
   }
 }

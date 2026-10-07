@@ -17,6 +17,8 @@ jobs:
           node-version: "20"
       - name: Install
         run: npm install
+      - name: Test runtime
+        run: npm test
       - name: Build
         run: npm run build
       - name: Pack dry-run

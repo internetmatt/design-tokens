@@ -24,6 +24,23 @@ import { token, TOKENS_CSS_IMPORT } from '@internetmatt/design-tokens';
 token('colors.primary.default'); // → 'var(--colors-primary-default)'
 ```
 
+### Runtime loading
+
+```ts
+import { getTokenValue, loadDesignTokens } from '@internetmatt/design-tokens/runtime';
+
+const tokens = await loadDesignTokens('/tokens.yaml');
+getTokenValue(tokens, 'colors.primary.default'); // → '#0078D4'
+```
+
+The loader preserves nested mappings and sequences in `.yaml` / `.yml` sources
+using `js-yaml` with `JSON_SCHEMA` (dates remain strings). YAML must contain a
+single mapping; malformed YAML and duplicate keys reject with the source and
+parser error, retained as `error.cause`. Object inputs are returned unchanged,
+and other URLs continue to use JSON parsing.
+
+Run the runtime regression tests with `npm test`.
+
 ## Publish / extract (TW-1)
 
 - **In-monorepo CI:** `.github/workflows/internetmatt-ui-packages-ci.yml`
