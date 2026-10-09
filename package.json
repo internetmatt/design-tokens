@@ -1,7 +1,7 @@
 {
   "name": "@internetmatt/design-tokens",
   "version": "1.0.0",
-  "description": "Shared design tokens \u2014 CSS custom properties and TypeScript helpers from the centralized YAML spec",
+  "description": "Shared design tokens — CSS custom properties and TypeScript helpers from the centralized YAML spec",
   "type": "module",
   "main": "./src/index.ts",
   "exports": {
@@ -34,7 +34,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
     "tsx": "^4.23.15"
   },
   "repository": {
@@ -42,6 +41,7 @@
     "url": "git+https://github.com/internetmatt/design-tokens.git"
   },
   "dependencies": {
-    "js-yaml": "^4.1.1"
+    "js-yaml": "^4.1.1",
+    "@types/js-yaml": "^4.0.9"
   }
 }
