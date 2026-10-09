@@ -23,3 +23,50 @@ jobs:
         run: npm run build
       - name: Pack dry-run
         run: npm run pack:dry
+
+  production-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install production dependencies
+        run: npm install --omit=dev --ignore-scripts --no-audit --no-fund
+      - name: Test runtime without development dependencies
+        run: node --test tests/runtime.test.mjs
+      - name: Check public runtime import
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFile } from 'node:fs/promises';
+          import { getTokenValue, loadDesignTokens } from '@internetmatt/design-tokens/runtime';
+
+          const yaml = await readFile('tokens.yaml', 'utf8');
+          globalThis.fetch = async () => new Response(yaml);
+          const tokens = await loadDesignTokens('https://example.test/tokens.yaml');
+          assert.equal(getTokenValue(tokens, 'colors.primary.default'), '#0078D4');
+          assert.equal(getTokenValue(tokens, 'typography.heading.h1.mobile.fontSize'), 28);
+          NODE
+      - name: Check strict TypeScript consumer without development dependencies
+        run: |
+          cat > consumer-check.ts <<'TS'
+          import {
+            token, t, TOKENS_CSS_IMPORT, loadDesignTokens, applyDesignTokens,
+            designTokensToCSS, getTokenValue, getTokenVariable, validateDesignTokens,
+          } from '@internetmatt/design-tokens';
+          import * as runtime from '@internetmatt/design-tokens/runtime';
+
+          const tokens = await loadDesignTokens({ colors: { primary: { default: '#0078D4' } } });
+          const reference: string = token('colors.primary.default');
+          const shorthand: string = t('spacing.md');
+          const stylesheet: string = TOKENS_CSS_IMPORT;
+          const css: string = designTokensToCSS(tokens);
+          const variable: string = getTokenVariable('colors.primary.default');
+          getTokenValue(tokens, 'colors.primary.default');
+          validateDesignTokens(tokens);
+          applyDesignTokens(tokens, 'dark');
+          runtime.getTokenValue(tokens, 'colors.primary.default');
+          TS
+          npm exec --yes --package=typescript@5.9.3 -- tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution Bundler consumer-check.ts
