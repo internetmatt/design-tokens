@@ -4,6 +4,8 @@
  * Loads design-tokens.yaml and applies to DOM/React components
  */
 
+import { JSON_SCHEMA, load } from 'js-yaml';
+
 export interface DesignTokens {
   colors?: Record<string, any>;
   typography?: Record<string, any>;
@@ -39,47 +41,30 @@ export async function loadDesignTokens(source: string | DesignTokens): Promise<D
   // If it's YAML, we need to parse it
   const content = await response.text();
   if (source.endsWith('.yaml') || source.endsWith('.yml')) {
-    // Simple YAML parser (for production, use js-yaml library)
-    return parseYAML(content);
+    return parseYAML(content, source);
   }
 
   return JSON.parse(content);
 }
 
 /**
- * Very basic YAML parser - for production use js-yaml
+ * Parse one YAML token mapping with JSON-compatible scalar types.
  */
-function parseYAML(yaml: string): DesignTokens {
-  // This is a simplified parser. For production, use 'npm install js-yaml'
-  // import YAML from 'js-yaml';
-  // return YAML.load(yaml) as DesignTokens;
-  
+function parseYAML(yaml: string, source: string): DesignTokens {
+  // Avoid implicit Date/binary values while preserving nested mappings and sequences.
+  let tokens: unknown;
   try {
-    // Try parsing as JSON first
-    return JSON.parse(yaml);
-  } catch {
-    // Fall back to simple key: value parsing
-    const tokens: DesignTokens = {};
-    const lines = yaml.split('\n');
-    let currentSection = '';
-
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith('#')) continue;
-
-      if (!line.startsWith(' ') && line.includes(':')) {
-        const [key, value] = line.split(':');
-        currentSection = key.trim();
-        if (value) {
-          (tokens as any)[currentSection] = value.trim();
-        } else {
-          (tokens as any)[currentSection] = {};
-        }
-      }
-    }
-
-    return tokens;
+    tokens = load(yaml, { schema: JSON_SCHEMA, filename: source });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to parse design tokens YAML from ${source}: ${reason}`, { cause: error });
   }
+
+  if (tokens === null || typeof tokens !== 'object' || Array.isArray(tokens)) {
+    throw new Error(`Invalid design tokens YAML from ${source}: expected a mapping`);
+  }
+
+  return tokens as DesignTokens;
 }
 
 /**
