@@ -2,7 +2,7 @@
  * Re-exports the design-tokens runtime (source of truth lives here).
  * Kept here so consumers only need @internetmatt/design-tokens.
  */
-export type { DesignTokens, TokenValue } from './runtime';
+export type { DesignTokens, TokenValue } from './runtime.js';
 export {
   loadDesignTokens,
   applyDesignTokens,
@@ -10,4 +10,5 @@ export {
   getTokenValue,
   getTokenVariable,
   validateDesignTokens,
-} from './runtime';
+} from './runtime.js';
+

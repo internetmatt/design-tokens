@@ -7,13 +7,13 @@ Shared design tokens (CSS custom properties + TypeScript helpers). **Existing pa
 | Asset | Path |
 | --- | --- |
 | Canonical YAML | `tokens.yaml` (package-local; TW-1 extract-ready) |
-| Legacy mirror | `.projecto/config/design-tokens.yaml` (warns if it drifts) |
 | Generated CSS / TS | `src/tokens.css`, `src/tokens.ts` |
 
 Edit `tokens.yaml`, then:
 
 ```bash
-pnpm --filter @internetmatt/design-tokens build
+npm ci
+npm run build
 ```
 
 ## Usage
@@ -41,19 +41,29 @@ and other URLs continue to use JSON parsing.
 
 Run the runtime regression tests with `npm test`.
 
-## Publish / extract (TW-1)
+## Standalone artifacts
 
-- **In-monorepo CI:** `.github/workflows/internetmatt-ui-packages-ci.yml`
-- **Extract plan:** `docs/superpowers/plans/2026-07-24-tw-1-design-tokens-declarative-ui-publish.md`
-- **Standalone scaffold:** `tools/ui-packages-extract/`
-- **Host kit stays** `@projecto/ui` in Projecto (`libs/ui`) — this package is consumed by the host kit and Sites.
-
-Dry-run pack (no registry write):
+`npm run build` generates tokens from package-local `tokens.yaml`, then compiles
+JavaScript and declarations into `dist/`. Exported root/runtime modules work in
+plain Node ESM and browser bundlers without a TypeScript loader. Import CSS
+through your app's stylesheet pipeline. The YAML asset is exported as
+`@internetmatt/design-tokens/tokens.yaml` for consumer-controlled loading.
 
 ```bash
-pnpm --filter @internetmatt/design-tokens pack:dry
+npm ci --ignore-scripts
+npm test
+npm run test:package
+npm pack
+# In a different project:
+npm install --ignore-scripts /path/to/internetmatt-design-tokens-1.0.0.tgz
 ```
+
+The package test installs the actual tarball into an isolated temporary consumer,
+runs root/runtime JavaScript with production dependencies, validates nested YAML
+and malformed input, resolves CSS, and compiles strict NodeNext declarations.
+Publication remains a separate authorized action.
 
 ## License
 
 MIT
+

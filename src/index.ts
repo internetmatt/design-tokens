@@ -18,4 +18,5 @@ export function token(path: string): string {
 /** Spacing shorthand — token('spacing.md') */
 export const t = token;
 
-export * from './design-tokens-runtime';
+export * from './design-tokens-runtime.js';
+
