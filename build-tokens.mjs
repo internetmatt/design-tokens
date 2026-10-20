@@ -1,40 +1,20 @@
 /**
  * build-tokens.mjs — generates src/tokens.css (+ tokens.ts) from the package YAML.
  *
- * Canonical source (TW-1 / extract-ready): libs/design-tokens/tokens.yaml
- * Fallback (legacy monorepo path): .projecto/config/design-tokens.yaml
+ * Canonical source: package-local tokens.yaml.
  *
  * Run: node build-tokens.mjs
  */
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs';
-import { join, dirname, relative } from 'path';
+import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { load } from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = join(__dirname, '..', '..');
-const PACKAGE_YAML = join(__dirname, 'tokens.yaml');
-const MONOREPO_YAML = join(REPO_ROOT, '.projecto', 'config', 'design-tokens.yaml');
-const YAML_PATH = existsSync(PACKAGE_YAML) ? PACKAGE_YAML : MONOREPO_YAML;
+const YAML_PATH = join(__dirname, 'tokens.yaml');
 const OUT_CSS = join(__dirname, 'src', 'tokens.css');
 const OUT_TS = join(__dirname, 'src', 'tokens.ts');
-
-if (!existsSync(YAML_PATH)) {
-  throw new Error(
-    `design-tokens: missing tokens YAML (tried ${PACKAGE_YAML} and ${MONOREPO_YAML})`,
-  );
-}
-
-if (
-  existsSync(PACKAGE_YAML) &&
-  existsSync(MONOREPO_YAML) &&
-  readFileSync(PACKAGE_YAML, 'utf8') !== readFileSync(MONOREPO_YAML, 'utf8')
-) {
-  console.warn(
-    `[design-tokens] WARNING: ${relative(REPO_ROOT, PACKAGE_YAML)} differs from ` +
-      `${relative(REPO_ROOT, MONOREPO_YAML)}. Package-local YAML wins for build; sync them.`,
-  );
-}
+if (!existsSync(YAML_PATH)) throw new Error('design-tokens: missing package-local tokens.yaml');
 
 const yaml = readFileSync(YAML_PATH, 'utf8');
 const tokens = load(yaml);
@@ -74,7 +54,7 @@ const sections = {
   density: tokens.density || {},
 };
 
-let css = `/* Auto-generated from .projecto/config/design-tokens.yaml — do not edit directly */\n\n:root {\n`;
+let css = `/* Auto-generated from tokens.yaml — do not edit directly */\n\n:root {\n`;
 for (const [section, data] of Object.entries(sections)) {
   const prefix = `--${kebab(section)}`;
   const vars = flatten(data, prefix);
@@ -118,7 +98,7 @@ console.log('wrote', OUT_CSS);
 
 // Build TypeScript constants
 const tsLines = [
-  `/* Auto-generated from .projecto/config/design-tokens.yaml — do not edit directly */`,
+  `/* Auto-generated from tokens.yaml — do not edit directly */`,
   ``,
   `/** Import 'tokens.css' in your app entry to apply CSS variables globally. */`,
   `export const TOKEN_CSS_PATH = '@internetmatt/design-tokens/tokens.css';`,
@@ -132,8 +112,9 @@ const tsLines = [
   `  return \`var(\${name})\`;`,
   `}`,
   ``,
-  `export { applyDesignTokens, loadDesignTokens } from './runtime';`,
+  `export { applyDesignTokens, loadDesignTokens } from './runtime.js';`,
 ];
 
 writeFileSync(OUT_TS, tsLines.join('\n') + '\n', 'utf8');
 console.log('wrote', OUT_TS);
+

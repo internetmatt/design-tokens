@@ -1,4 +1,4 @@
-/* Auto-generated from .projecto/config/design-tokens.yaml — do not edit directly */
+/* Auto-generated from tokens.yaml — do not edit directly */
 
 /** Import 'tokens.css' in your app entry to apply CSS variables globally. */
 export const TOKEN_CSS_PATH = '@internetmatt/design-tokens/tokens.css';
@@ -12,4 +12,4 @@ export function token(path: string): string {
   return `var(${name})`;
 }
 
-export { applyDesignTokens, loadDesignTokens } from './runtime';
+export { applyDesignTokens, loadDesignTokens } from './runtime.js';

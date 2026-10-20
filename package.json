@@ -3,25 +3,35 @@
   "version": "1.0.0",
   "description": "Shared design tokens \u2014 CSS custom properties and TypeScript helpers from the centralized YAML spec",
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "exports": {
-    ".": "./src/index.ts",
-    "./tokens.css": "./src/tokens.css",
-    "./runtime": "./src/runtime.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js",
+      "default": "./dist/runtime.js"
+    },
+    "./tokens.yaml": "./tokens.yaml"
   },
   "files": [
-    "src",
+    "dist",
     "tokens.yaml",
-    "build-tokens.mjs",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "build:css": "node build-tokens.mjs",
-    "build": "node build-tokens.mjs",
+    "build": "node scripts/build.mjs",
     "pack:dry": "npm pack --dry-run",
-    "ci": "node ../../tools/scripts/ui-packages/ci-check.mjs --package design-tokens",
-    "test": "node --import tsx --test tests/runtime.test.mjs"
+    "ci": "npm run test:package",
+    "test": "node --import tsx --test tests/runtime.test.mjs",
+    "prepack": "npm run build",
+    "test:package": "node scripts/test-package.mjs"
   },
   "publishConfig": {
     "access": "public"
@@ -34,7 +44,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "tsx": "^4.23.15"
+    "tsx": "^4.23.15",
+    "typescript": "5.9.3"
   },
   "repository": {
     "type": "git",
@@ -43,5 +54,9 @@
   "dependencies": {
     "js-yaml": "^4.1.1",
     "@types/js-yaml": "^4.0.9"
-  }
+  },
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "./dist/tokens.css"
+  ]
 }
